@@ -15,7 +15,7 @@
 	<description>Demo application with Netflix DGS GraphQL implemetation</description>
 
 	<properties>
-		<graphql-dgs-platform-dependencies.version>8.5.6</graphql-dgs-platform-dependencies.version>
+		<graphql-dgs-platform-dependencies.version>8.7.1</graphql-dgs-platform-dependencies.version>
 	</properties>
 
 	<dependencyManagement>
@@ -44,13 +44,13 @@
 			<groupId>com.netflix.graphql.dgs</groupId>
 			<artifactId>graphql-dgs-spring-boot-starter</artifactId>
 		</dependency>
-		
+
 		<!--Reactive stack-->
 		<!--<dependency>
 			<groupId>com.netflix.graphql.dgs</groupId>
 			<artifactId>graphql-dgs-webflux-starter</artifactId>
 		</dependency>-->
-		
+
 		<!-- Subscriptions -->
 		<!--Websocket on Servlet stack; Not needed for Reactive-->
 		<dependency>
@@ -74,6 +74,13 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>

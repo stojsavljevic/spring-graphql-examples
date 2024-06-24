@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.0-RC1</version>
+		<version>3.3.1</version>
 		<relativePath />
 	</parent>
 
@@ -29,7 +29,6 @@
 	<modules>
 		<module>graphql-core</module>
 		<module>graphql-dgs</module>
-		<module>graphql-kickstart</module>
 		<module>graphql-spring</module>
 	</modules>
 
@@ -38,10 +37,15 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-	<repositories>
+	<!--<repositories>
 		<repository>
 			<id>spring-milestones</id>
 			<url>https://repo.spring.io/milestone</url>
+		</repository>
+		<repository>
+			<id>repository.spring.snapshot</id>
+			<name>Spring Snapshot Repository</name>
+			<url>http://repo.spring.io/snapshot</url>
 		</repository>
 	</repositories>
 	<pluginRepositories>
@@ -49,7 +53,7 @@
 			<id>spring-milestones</id>
 			<url>https://repo.spring.io/milestone</url>
 		</pluginRepository>
-	</pluginRepositories>
+	</pluginRepositories>-->
 
 	<dependencies>
 

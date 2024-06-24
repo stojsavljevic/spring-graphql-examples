@@ -11,5 +11,4 @@ public class GraphqlSpringApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GraphqlSpringApplication.class, args);
 	}
-	
 }

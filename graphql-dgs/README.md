@@ -7,17 +7,17 @@
 
 ## Issues
 
-* `@DgsData` methods (field resolvers) can't be used with `@Secured("ROLE_USER")` because authentication is not found when using WebSocket subscriptions. [GitHub Issue](https://github.com/Netflix/dgs-framework/issues/458)
+* `@DgsData` methods (field resolvers) can't be used with `@Secured("ROLE_USER")` because authentication is not found when using WebSocket subscriptions. Probably related to this [GitHub Issue](https://github.com/Netflix/dgs-framework/issues/1294) or this [GitHub Issue](https://github.com/Netflix/dgs-framework/issues/458).
 * No support for Bearer token authentication for subscriptions [GitHub Issue](https://github.com/Netflix/dgs-framework/issues/450).
 * No support for java records as inputs: [GitHub Issue](https://github.com/Netflix/dgs-framework/issues/1138)
 * SSE and WebSocket subscriptions don't work at the same time.
 * SSE don't work on Reactive stack.
 * WebSocket subscriptions in integrated GraphiQL don't work.
-* WebSocket subscriptions in both custom and integrated GraphiQL don't work well with security.
+
 
 ## SSE Subscriptions
 
-* Change subscription related dependencies in `pom.xml`.
+* Enable subscriptions related dependency in `pom.xml`: `graphql-dgs-subscriptions-sse-autoconfigure` and disable `graphql-dgs-subscriptions-websockets-autoconfigure`
 * Use Postman or `curl`. Example `curl` request:
 
 ```

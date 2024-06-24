@@ -4,7 +4,7 @@
 
 type Query {
     allPosts: [Post]
-    allAuthors: [Author]
+    postById(id: String!): Post
 }
 
 # ====================================
@@ -28,7 +28,7 @@ type Subscription {
 # Types
 
 type Post {
-	id: ID!
+    id: ID!
     title: String
     content: String
     releaseYear: Int

@@ -21,7 +21,7 @@
 			<artifactId>graphql-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
+
 		<!--Servlet vs Reactive stack; disable to use Reactive but security will not work-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -62,7 +62,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
 
 	<build>
 		<plugins>
