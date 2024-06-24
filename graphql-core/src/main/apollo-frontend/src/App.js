@@ -1,10 +1,15 @@
 import { useQuery, useSubscription, gql } from '@apollo/client';
 
-const GET_AUTHORS = gql`
+const GET_POSTS = gql`
   query {
-    allAuthors {
-      name
-      email
+    allPosts {
+      id
+      title
+      content
+      releaseYear
+      author {
+        name
+      }
     }
   }
 `;
@@ -22,14 +27,14 @@ const SUB_POST = gql`
   }
 `
 
-function GetAllAuthors() {
-  const { loading, error, data } = useQuery(GET_AUTHORS);
+function GetAllPosts() {
+  const { loading, error, data } = useQuery(GET_POSTS);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
 
-  return data.allAuthors.map(({ name, email }) => (
-    <p key={email}>{name}: {email}</p>
+  return data.allPosts.map(({ id, title, content, author }) => (
+    <p key={id}><b>{author.name}</b>: <i>{title}</i> - {content} </p>
   ));
 }
 
@@ -40,8 +45,8 @@ function GetRandomPost() {
   if (error) return <p>Error : {error.message}</p>;
 
   return  <div>
-            <p>{data.randomPost.author.name}:</p>
-            <p>{data.randomPost.title}</p>
+            <p><b>{data.randomPost.author.name}:</b></p>
+            <p><i>{data.randomPost.title}</i></p>
             <p>{data.randomPost.content}</p>
             <p>{data.randomPost.releaseYear}</p>
           </div>;
@@ -50,13 +55,13 @@ function GetRandomPost() {
 export default function App() {
   return (
     <div>
-      <h2>Spring GraphQL Examples 🤓️</h2>
-      <p>This client uses new graphql-ws npm library and <b>graphql-transport-ws</b> protocol for subscriptions</p>
+      <h1>Spring GraphQL Examples with React 🤓️</h1>
+      <p>This page uses Apollo client that leverages graphql-ws library and graphql-transport-ws protocol for subscriptions</p>
       <br/>
-      <h4>All Authors Query</h4>
-      <GetAllAuthors />
+      <h2>All Posts Query</h2>
+      <GetAllPosts />
       <br/>
-      <h4>Random Post Subscription</h4>
+      <h2>Random Post Subscription</h2>
       <GetRandomPost />
     </div>
   );

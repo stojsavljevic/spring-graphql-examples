@@ -7,13 +7,17 @@
 
 ## Issues
 
-* `@DgsData` methods (field resolvers) can't be used with `@Secured("ROLE_USER")` because authentication is not found when using WebSocket subscriptions. [GitHub Issue](https://github.com/Netflix/dgs-framework/issues/458)
+* `@DgsData` methods (field resolvers) can't be used with `@Secured("ROLE_USER")` because authentication is not found when using WebSocket subscriptions. Probably related to this [GitHub Issue](https://github.com/Netflix/dgs-framework/issues/1294) or this [GitHub Issue](https://github.com/Netflix/dgs-framework/issues/458).
 * No support for Bearer token authentication for subscriptions [GitHub Issue](https://github.com/Netflix/dgs-framework/issues/450).
-* WebSocket subscriptions in embedded GraphiQL don't work.
+* No support for java records as inputs: [GitHub Issue](https://github.com/Netflix/dgs-framework/issues/1138)
+* SSE and WebSocket subscriptions don't work at the same time.
+* SSE don't work on Reactive stack.
+* WebSocket subscriptions in integrated GraphiQL don't work.
+
 
 ## SSE Subscriptions
 
-* Change subscription related dependencies in `pom.xml`.
+* Enable subscriptions related dependency in `pom.xml`: `graphql-dgs-subscriptions-sse-autoconfigure` and disable `graphql-dgs-subscriptions-websockets-autoconfigure`
 * Use Postman or `curl`. Example `curl` request:
 
 ```
@@ -24,3 +28,9 @@ curl --location --request POST 'http://localhost:8080/subscriptions' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"subscription {\n  randomPost {\n    title\n    content\n    releaseYear\n    author {\n      name\n    }\n  }\n}","variables":{}}'
 ```
+
+## Reactive
+
+* Enable Reactive stack by commenting out `graphql-dgs-spring-boot-starter` and enabling `graphql-dgs-webflux-starter` dependency. Reactive security is not implemented so application has to be run with `no-security` profile.
+* Subscription dependency `graphql-dgs-subscriptions-websockets-autoconfigure` is not required.
+* SSE don't work (`graphql-dgs-subscriptions-sse-autoconfigure` dependency can't be enabled)

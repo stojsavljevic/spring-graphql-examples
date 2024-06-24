@@ -1,22 +1,25 @@
 package com.alex.graphql.core.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+public class Post extends com.alex.graphql.core.generated.types.Post {
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@Builder
-public class Post {
+	private String authorId;
 
-	String id;
-	String title;
-	String content;
-	Integer releaseYear;
-	String authorId;
+	Post() {
+	}
 
+	public Post(String id, String title, String content, Integer releaseYear, String authorId) {
+		setId(id);
+		setTitle(title);
+		setReleaseYear(releaseYear);
+		setContent(content);
+		setAuthorId(authorId);
+	}
+
+	public String getAuthorId() {
+		return authorId;
+	}
+
+	public void setAuthorId(String authorId) {
+		this.authorId = authorId;
+	}
 }

@@ -13,11 +13,11 @@ const httpLink = new HttpLink({
 });
 
 // Create an ws link
-// set authToken in connection payload to simulate bearer token authentication
+// set Authorization in connection payload to simulate bearer token authentication
 const wsLink = new GraphQLWsLink(createClient({
   url: 'ws://localhost:8080/subscriptions',
   connectionParams: {
-    authToken: 'admin',
+    Authorization: 'admin:admin',
   },
 }));
 

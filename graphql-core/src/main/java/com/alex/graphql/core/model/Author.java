@@ -1,13 +1,23 @@
 package com.alex.graphql.core.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+public class Author extends com.alex.graphql.core.generated.types.Author {
 
-@AllArgsConstructor
-@Getter
-public class Author {
+	private String id;
 
-	String id;
-	String name;
-	String email;
+	Author() {
+	}
+
+	public Author(String id, String name, String email) {
+		setId(id);
+		setName(name);
+		setEmail(email);
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 }
