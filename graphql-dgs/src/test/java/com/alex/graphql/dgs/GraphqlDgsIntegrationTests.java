@@ -13,11 +13,13 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.graphql.client.WebSocketGraphQlClient;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.socket.client.ReactorNettyWebSocketClient;
 
+import com.alex.graphql.core.generated.DgsConstants;
 import com.alex.graphql.core.model.Post;
 import com.alex.graphql.core.model.PostInput;
 import com.alex.graphql.core.testing.BasicGraphQlTests;
@@ -27,7 +29,6 @@ import com.netflix.graphql.dgs.client.ReactiveGraphQLClient;
 import com.netflix.graphql.dgs.client.RestClientGraphQLClient;
 import com.netflix.graphql.dgs.client.SSESubscriptionGraphQLClient;
 import com.netflix.graphql.dgs.client.WebClientGraphQLClient;
-import com.netflix.graphql.dgs.client.WebSocketGraphQLClient;
 
 import graphql.ErrorType;
 import reactor.test.StepVerifier;
@@ -50,14 +51,16 @@ class GraphqlDgsIntegrationTests extends BasicGraphQlTests {
 	WebClientGraphQLClient webGraphQLClient;
 
 	/**
-	 * This reactive client {@link WebSocketGraphQLClient} uses deprecated
+	 * DGS reactive client {@link com.netflix.graphql.dgs.client.WebSocketGraphQLClient} uses deprecated
 	 * subscription-transport-ws protocol
 	 * 
 	 * @see <a href=
 	 *      "https://github.com/Netflix/dgs-framework/blob/master/graphql-dgs-client/src/main/kotlin/com/netflix/graphql/dgs/client/WebSocketGraphQLClient.kt">WebSocketGraphQLClient.kt</a>
+	 *      
+	 * Instead of it I will use {@link org.springframework.graphql.client.WebSocketGraphQlClient}
 	 * 
 	 */
-	WebSocketGraphQLClient webSocketGraphQLClient;
+	WebSocketGraphQlClient webSocketGraphQlClient;
 
 	// SSE client that uses deprecated subscriptions-transport-sse protocol
 	SSESubscriptionGraphQLClient sseSubscriptionGraphQLClient;
@@ -72,7 +75,9 @@ class GraphqlDgsIntegrationTests extends BasicGraphQlTests {
 
 		this.webGraphQLClient = MonoGraphQLClient.createWithWebClient(WebClient.create(baseHttpPath + "/graphql"));
 
-		this.webSocketGraphQLClient = new WebSocketGraphQLClient(baseWsPath, new ReactorNettyWebSocketClient());
+		this.webSocketGraphQlClient = WebSocketGraphQlClient
+				.builder(baseWsPath, new ReactorNettyWebSocketClient())
+				.build();
 
 		this.sseSubscriptionGraphQLClient = new SSESubscriptionGraphQLClient("/subscriptions",
 				WebClient.create(baseHttpPath));
@@ -185,16 +190,17 @@ class GraphqlDgsIntegrationTests extends BasicGraphQlTests {
 
 	@Test
 	void test_subscription_ws() {
-
-		var randomPost = this.webSocketGraphQLClient
-				.reactiveExecuteQuery(getRandomPostSubscription(), Collections.emptyMap())
-					.map(response -> response.extractValueAsObject(JSON_PATH_RANDOM_POST, Post.class));
+		
+		var subscriptionPost = this.webSocketGraphQlClient
+				.document(getRandomPostSubscription())
+					.retrieveSubscription(DgsConstants.SUBSCRIPTION.RandomPost)
+					.toEntity(Post.class);
 
 		StepVerifier
-				.create(randomPost)
-					.consumeNextWith(post -> assertThat(post.getTitle()).isNotEmpty())
-					.consumeNextWith(post -> assertThat(post.getTitle()).isNotEmpty())
-					.consumeNextWith(post -> assertThat(post.getTitle()).isNotEmpty())
+				.create(subscriptionPost)
+					.assertNext(post -> assertThat(post.getTitle()).isNotEmpty())
+					.assertNext(post -> assertThat(post.getTitle()).isNotEmpty())
+					.assertNext(post -> assertThat(post.getTitle()).isNotEmpty())
 					.thenCancel()
 					.verify();
 	}

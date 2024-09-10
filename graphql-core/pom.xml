@@ -14,21 +14,21 @@
 	<name>graphql-core</name>
 
 	<properties>
-		<graphqlcodegen-maven-plugin.version>1.61.0</graphqlcodegen-maven-plugin.version>
-		<graphql-dgs-codegen.version>6.2.1</graphql-dgs-codegen.version>
+		<graphqlcodegen-maven-plugin.version>1.61.5</graphqlcodegen-maven-plugin.version>
+		<graphql-dgs-codegen.version>6.3.0</graphql-dgs-codegen.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.netflix.graphql.dgs.codegen</groupId>
-			<artifactId>graphql-dgs-codegen-core</artifactId>
+			<artifactId>graphql-dgs-codegen-shared-core</artifactId>
 			<version>${graphql-dgs-codegen.version}</version>
 		</dependency>
 
+		<!-- With DGS Spring Integration this library is common to both implementations -->
 		<dependency>
-			<groupId>com.netflix.graphql.dgs.codegen</groupId>
-			<artifactId>graphql-dgs-codegen-shared-core</artifactId>
-			<version>${graphql-dgs-codegen.version}</version>
+			<groupId>org.springframework.graphql</groupId>
+			<artifactId>spring-graphql</artifactId>
 		</dependency>
 
 		<dependency>

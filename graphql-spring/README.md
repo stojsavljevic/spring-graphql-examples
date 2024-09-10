@@ -6,7 +6,7 @@
 * [Integrated GraphiQL](http://localhost:8080/graphiql)
 
 ## Issues
-* When using Servlet stack, closing client for SSE subscriptions causes exception every time subscription object was supposed to be emitted:
+* When using Servlet stack, after closing a client for SSE subscriptions - the application keeps fetching data and throws the exception every time subscription object was supposed to be emitted:
 
 ```
 org.springframework.web.context.request.async.AsyncRequestNotUsableException: Response not usable after response errors.
@@ -43,6 +43,5 @@ curl --location --request POST 'http://localhost:8080/graphql' \
 ```
 
 ## Reactive
-
-* Enable Reactive stack by commenting out `spring-boot-starter-web` dependency. Reactive security is not implemented so application has to be run with `no-security` profile.
-
+* Enable Reactive stack by commenting out `spring-boot-starter-web`
+* Reactive security is not implemented so application has to be run with `no-security` profile.

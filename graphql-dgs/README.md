@@ -8,14 +8,16 @@
 ## Issues
 
 * `@DgsData` methods (field resolvers) can't be used with `@Secured("ROLE_USER")` because authentication is not found when using WebSocket subscriptions. Probably related to this [GitHub Issue](https://github.com/Netflix/dgs-framework/issues/1294) or this [GitHub Issue](https://github.com/Netflix/dgs-framework/issues/458).
-* No support for Bearer token authentication for subscriptions [GitHub Issue](https://github.com/Netflix/dgs-framework/issues/450).
 * No support for java records as inputs: [GitHub Issue](https://github.com/Netflix/dgs-framework/issues/1138)
-* SSE and WebSocket subscriptions don't work at the same time.
-* SSE don't work on Reactive stack.
-* WebSocket subscriptions in integrated GraphiQL don't work.
+* SSE subscriptions currently don't work with DGS Spring GraphQL Integration: [Official Documentation](https://netflix.github.io/dgs/spring-graphql-integration/#known-gaps-and-limitations)
+    - ~~SSE and WebSocket subscriptions don't work at the same time.~~
+    - ~~SSE don't work on Reactive stack.~~
 
+## WS Subscriptions
 
-## SSE Subscriptions
+If using security, add following as headers in GraphiQL: `{"Authorization":"admin:admin"}`
+
+## SSE Subscriptions - CURRENTLY DON'T WORK
 
 * Enable subscriptions related dependency in `pom.xml`: `graphql-dgs-subscriptions-sse-autoconfigure` and disable `graphql-dgs-subscriptions-websockets-autoconfigure`
 * Use Postman or `curl`. Example `curl` request:
@@ -30,7 +32,5 @@ curl --location --request POST 'http://localhost:8080/subscriptions' \
 ```
 
 ## Reactive
-
-* Enable Reactive stack by commenting out `graphql-dgs-spring-boot-starter` and enabling `graphql-dgs-webflux-starter` dependency. Reactive security is not implemented so application has to be run with `no-security` profile.
-* Subscription dependency `graphql-dgs-subscriptions-websockets-autoconfigure` is not required.
-* SSE don't work (`graphql-dgs-subscriptions-sse-autoconfigure` dependency can't be enabled)
+* Enable Reactive stack by commenting out `spring-boot-starter-web`
+* Reactive security is not implemented so application has to be run with `no-security` profile.

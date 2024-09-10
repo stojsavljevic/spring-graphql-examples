@@ -1,4 +1,4 @@
-package com.alex.graphql.spring.authentication;
+package com.alex.graphql.core.authentication;
 
 import java.util.Map;
 
@@ -15,7 +15,8 @@ public class WsAuthenticationTokenExtractor implements AuthenticationExtractor {
 
 		String authToken = (String) payload.get("Authorization");
 		if (authToken != null) {
-
+			System.out.println("Authentication token found: " + authToken);
+			
 			String[] credentials = authToken.split(":", 2);
 			if (credentials.length == 2) {
 				UsernamePasswordAuthenticationToken userPassAuthToken = new UsernamePasswordAuthenticationToken(

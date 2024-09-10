@@ -15,7 +15,7 @@
 	<description>Demo application with Netflix DGS GraphQL implemetation</description>
 
 	<properties>
-		<graphql-dgs-platform-dependencies.version>8.7.1</graphql-dgs-platform-dependencies.version>
+		<graphql-dgs-platform-dependencies.version>9.1.0</graphql-dgs-platform-dependencies.version>
 	</properties>
 
 	<dependencyManagement>
@@ -37,50 +37,40 @@
 			<artifactId>graphql-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-
-		<!-- GraphQL -->
-		<!--Servlet stack-->
-		<dependency>
-			<groupId>com.netflix.graphql.dgs</groupId>
-			<artifactId>graphql-dgs-spring-boot-starter</artifactId>
+		
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.netflix.graphql.dgs</groupId>
+            <artifactId>graphql-dgs-spring-graphql-starter</artifactId>
+        </dependency>
+        
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
 
-		<!--Reactive stack-->
-		<!--<dependency>
-			<groupId>com.netflix.graphql.dgs</groupId>
-			<artifactId>graphql-dgs-webflux-starter</artifactId>
-		</dependency>-->
-
-		<!-- Subscriptions -->
-		<!--Websocket on Servlet stack; Not needed for Reactive-->
-		<dependency>
-			<groupId>com.netflix.graphql.dgs</groupId>
-			<artifactId>graphql-dgs-subscriptions-websockets-autoconfigure</artifactId>
+        
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-web</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-		<!--SSE on Servlet stack; Doesn't work for Reactive-->
-		<!--<dependency>
-			<groupId>com.netflix.graphql.dgs</groupId>
-			<artifactId>graphql-dgs-subscriptions-sse-autoconfigure</artifactId>
-		</dependency>-->
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-websocket</artifactId>
-		</dependency>
-
+        
 		<!-- Test -->
 		<dependency>
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
-			<scope>test</scope>
-		</dependency>
-
 	</dependencies>
 
 	<build>

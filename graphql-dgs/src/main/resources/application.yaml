@@ -8,3 +8,8 @@ dgs:
 logging:
   level:
     com.netflix: DEBUG
+
+spring:
+  graphql:
+    websocket:
+      path: /subscriptions

@@ -25,7 +25,6 @@ import com.alex.graphql.core.generated.client.AllPostsGraphQLQuery;
 import com.alex.graphql.core.generated.client.AllPostsProjectionRoot;
 import com.alex.graphql.core.generated.client.RandomPostGraphQLQuery;
 import com.alex.graphql.core.model.Post;
-import com.alex.graphql.core.testing.BasicGraphQlTests;
 
 import graphql.ErrorType;
 import reactor.test.StepVerifier;
@@ -36,7 +35,7 @@ import reactor.test.StepVerifier;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ActiveProfiles("no-security")
-class GraphqlSpringIntegrationTests extends BasicGraphQlTests {
+class GraphqlSpringIntegrationTests extends BasicSpringGraphQlTests {
 
 	@Value("http://localhost:${local.server.port}${spring.graphql.path:/graphql}")
 	String baseHttpPath;
