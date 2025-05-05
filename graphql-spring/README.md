@@ -6,17 +6,6 @@
 * [Integrated GraphiQL](http://localhost:8080/graphiql)
 
 ## Issues
-* When using Servlet stack, after closing a client for SSE subscriptions - the application keeps fetching data and throws the exception every time subscription object was supposed to be emitted:
-
-```
-org.springframework.web.context.request.async.AsyncRequestNotUsableException: Response not usable after response errors.
-```
-
-* When testing SSE subscriptions with `HttpGraphQlClient`, after testing ends, exceptions are thrown:
-
-```
-java.lang.IllegalStateException: The request associated with the AsyncContext has already completed processing.
-```
 
 * Testing SSE subscriptions using `HttpGraphQlTester` is not supported:
 
@@ -27,7 +16,7 @@ java.lang.UnsupportedOperationException: Subscriptions not supported over HTTP
 
 ## WS Subscriptions
 
-If using security, add following as headers in GraphiQL: `{"Authorization":"admin:admin"}`
+WS subscriptions can be tested in Apollo client or in integrated GraphiQL. If using security, add following as a header in GraphiQL: `{"Authorization":"admin:admin"}`
 
 
 ## SSE Subscriptions
