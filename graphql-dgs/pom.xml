@@ -15,7 +15,7 @@
 	<description>Demo application with Netflix DGS GraphQL implemetation</description>
 
 	<properties>
-		<graphql-dgs-platform-dependencies.version>9.1.0</graphql-dgs-platform-dependencies.version>
+		<graphql-dgs-platform-dependencies.version>10.1.2</graphql-dgs-platform-dependencies.version>
 	</properties>
 
 	<dependencyManagement>
@@ -66,6 +66,11 @@
 		</dependency>
         
 		<!-- Test -->
+		<dependency>
+			<groupId>com.netflix.graphql.dgs</groupId>
+			<artifactId>dgs-starter-test</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-test</artifactId>

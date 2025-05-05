@@ -13,16 +13,16 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.alex.graphql.core.model.Post;
 import com.alex.graphql.core.testing.BasicGraphQlTests;
-import com.alex.graphql.dgs.fetchers.DgsDatafetcher;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netflix.graphql.dgs.DgsQueryExecutor;
-import com.netflix.graphql.dgs.autoconfig.DgsAutoConfiguration;
+import com.netflix.graphql.dgs.test.EnableDgsTest;
 
 import graphql.ErrorType;
 import graphql.ExecutionResult;
 import reactor.test.StepVerifier;
 
-@SpringBootTest(classes = { DgsAutoConfiguration.class, DgsDatafetcher.class })
+@EnableDgsTest
+@SpringBootTest
 @ActiveProfiles("no-security")
 class GraphqlDgsNoServerTests extends BasicGraphQlTests {
 

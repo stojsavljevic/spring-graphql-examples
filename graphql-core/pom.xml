@@ -14,8 +14,8 @@
 	<name>graphql-core</name>
 
 	<properties>
-		<graphqlcodegen-maven-plugin.version>1.61.5</graphqlcodegen-maven-plugin.version>
-		<graphql-dgs-codegen.version>6.3.0</graphql-dgs-codegen.version>
+		<graphqlcodegen-maven-plugin.version>3.0.0</graphqlcodegen-maven-plugin.version>
+		<graphql-dgs-codegen.version>8.0.2</graphql-dgs-codegen.version>
 	</properties>
 
 	<dependencies>
