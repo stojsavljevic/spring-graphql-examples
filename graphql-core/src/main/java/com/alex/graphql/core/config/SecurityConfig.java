@@ -19,7 +19,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 
 import com.alex.graphql.core.authentication.WsAuthenticationTokenExtractor;
 
@@ -36,7 +36,7 @@ public class SecurityConfig {
 
 		http.authorizeHttpRequests(
 				(requests) -> requests
-						.requestMatchers(new AntPathRequestMatcher("/manifest.json"))
+						.requestMatchers(PathPatternRequestMatcher.withDefaults().matcher("/manifest.json"))
 						.permitAll()
 						.anyRequest()
 						.authenticated())

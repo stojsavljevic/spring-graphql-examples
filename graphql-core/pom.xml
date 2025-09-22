@@ -7,15 +7,15 @@
 	<parent>
 		<artifactId>alex-graphql-examples</artifactId>
 		<groupId>com.alex.graphql</groupId>
-		<version>1.3.3</version>
+		<version>1.3.5</version>
 	</parent>
 
 	<artifactId>graphql-core</artifactId>
 	<name>graphql-core</name>
 
 	<properties>
-		<graphqlcodegen-maven-plugin.version>3.0.0</graphqlcodegen-maven-plugin.version>
-		<graphql-dgs-codegen.version>8.0.2</graphql-dgs-codegen.version>
+		<graphqlcodegen-maven-plugin.version>3.5.1</graphqlcodegen-maven-plugin.version>
+		<graphql-dgs-codegen.version>8.1.1</graphql-dgs-codegen.version>
 	</properties>
 
 	<dependencies>

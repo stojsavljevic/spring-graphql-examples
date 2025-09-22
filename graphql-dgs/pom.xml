@@ -7,7 +7,7 @@
 	<parent>
 		<artifactId>alex-graphql-examples</artifactId>
 		<groupId>com.alex.graphql</groupId>
-		<version>1.3.3</version>
+		<version>1.3.5</version>
 	</parent>
 
 	<artifactId>graphql-dgs</artifactId>
@@ -15,7 +15,7 @@
 	<description>Demo application with Netflix DGS GraphQL implemetation</description>
 
 	<properties>
-		<graphql-dgs-platform-dependencies.version>10.1.2</graphql-dgs-platform-dependencies.version>
+		<graphql-dgs-platform-dependencies.version>10.4.0</graphql-dgs-platform-dependencies.version>
 	</properties>
 
 	<dependencyManagement>
@@ -50,12 +50,6 @@
         
         <dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
-		</dependency>
-
-        
-        <dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
 			<exclusions>
 				<exclusion>
@@ -69,6 +63,13 @@
 		<dependency>
 			<groupId>com.netflix.graphql.dgs</groupId>
 			<artifactId>dgs-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+			<scope>test</scope>
 		</dependency>
 		
 		<dependency>
